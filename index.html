@@ -274,15 +274,16 @@
   .bcard p{font-size:13.5px; color:var(--ink-soft);}
 
   /* ============ GALERI ============ */
-  .galeri-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:130px; gap:12px;}
-  .gitem{
-    border-radius:6px;
-    background:repeating-linear-gradient(135deg,#E4E9F1,#E4E9F1 10px,#DCE3EE 10px,#DCE3EE 20px);
-    display:flex; align-items:center; justify-content:center; color:#9AA7BC; font-size:12px; text-align:center; padding:8px;
-    border:1px solid var(--line);
-  }
-  .gitem.tall{grid-row:span 2;}
-
+ .galeri-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:130px; gap:2px;}
+ .gitem{
+   border-radius:4px;
+   background:repeating-linear-gradient(135deg,#E4E9F1,#E4E9F1 10px,#DCE3EE 10px,#DCE3EE 20px);
+   display:flex; align-items:center; justify-content:center; color:#9AA7BC; font-size:12px; text-align:center; padding:8px;
+   overflow:hidden;
+ }
+ .gitem:has(img){padding:0;}
+ .gitem img{width:100%; height:100%; object-fit:cover; display:block;}
+ .gitem.tall{grid-row:span 2;}
   /* ============ PPDB CTA ============ */
   .ppdb{
     background:linear-gradient(120deg, var(--red), #8f2226);
@@ -333,13 +334,39 @@
     html{scroll-behavior:auto;}
     *{transition:none !important;}
   }
+  .back-to-top{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:var(--navy-deep);
+  border:2px solid var(--gold);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:60;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(12px);
+  transition:.25s ease;
+}
+.back-to-top.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+.back-to-top:hover{background:var(--navy-soft);}
 </style>
 </head>
 <body>
 
 <header>
   <div class="nav-wrap">
-    <div class="brand">
+    <a href="#beranda" class="brand" style="cursor:pointer;">
       <!-- 🖼️ GANTI LOGO DI SINI: hapus <div class="badge">S3T</div> di bawah ini,
            ganti dengan: <img src="images/logo.png" style="width:44px;height:44px;border-radius:50%;object-fit:cover;"> -->
       <div class="badge">S3T</div>
@@ -347,7 +374,7 @@
         <div class="school-name">SMP Negeri 3 Teras</div>
         <div class="school-sub">Boyolali · Jawa Tengah</div>
       </div>
-    </div>
+    </a>
     <nav id="mainNav">
       <ul>
         <li><a href="#beranda">Beranda</a></li>
@@ -382,7 +409,7 @@
       <div class="id-card-head">
         <div class="tag">Identitas<strong>Sekolah</strong></div>
         <!-- ✏️ GANTI: "No. 03" bisa diisi Nomor Statistik Sekolah (NSS) atau NPSN -->
-        <div style="font-family:var(--mono); font-size:10px; color:var(--ink-soft);">NPSN. 03</div>
+        <div style="font-family:var(--mono); font-size:10px; color:var(--ink-soft);">NPSN.20308495</div>
       </div>
       <!-- 🖼️ GANTI FOTO DI SINI: hapus "Foto siswa menyusul" di bawah, ganti jadi:
            <img src="images/logo-atau-foto.jpg" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;margin-bottom:16px;"> -->
@@ -414,7 +441,7 @@
            <img src="images/kepala-sekolah.jpg" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;"> -->
       <img src="images/kepala-sekolah.jpg" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;">
       <!-- ✏️ GANTI dengan nama asli kepala sekolah, beserta gelar -->
-      <div class="kepsek-name">Nama Kepala Sekolah</div>
+      <div class="kepsek-name">Arif Utomo S.Kom</div>
       <div class="kepsek-title">Kepala SMP Negeri 3 Teras</div>
     </div>
     <div>
@@ -630,8 +657,8 @@
          Kotak yang class-nya "gitem tall" (Foto 1 & Foto 4) ukurannya 2x lebih tinggi — cocok untuk foto potret/vertikal.
          Mau nambah foto lagi? tinggal copy satu baris <div class="gitem">...</div> -->
     <div class="galeri-grid">
-      <div class="gitem tall"><img src="images/galeri1.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></div>
-      <div class="gitem"><img src="images/galeri2.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></div>
+      <div class="gitem tall"><img src="images/galeri1.jpg"></div>
+      <div class="gitem"><img src="images/galeri2.jpg"></div>
       <div class="gitem">Foto 3</div>
       <div class="gitem tall">Foto 4</div>
       <div class="gitem">Foto 5</div>
@@ -732,12 +759,27 @@
     </div>
   </div>
 </footer>
-
+<button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M12 19V5M5 12l7-7 7 7" />
+  </svg>
+</button>
 <script>
   const menuBtn = document.getElementById('menuBtn');
   const nav = document.getElementById('mainNav');
   menuBtn.addEventListener('click', () => nav.classList.toggle('open'));
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 </script>
 
 </body>
