@@ -284,16 +284,16 @@
  .gitem:has(img){padding:0;}
  .gitem img{width:100%; height:100%; object-fit:cover; display:block;}
  .gitem.tall{grid-row:span 2;}
-  /* ============ PPDB CTA ============ */
-  .ppdb{
+  /* ============ SPMB CTA ============ */
+  .spmb {
     background:linear-gradient(120deg, var(--red), #8f2226);
     color:#fff; border-radius:10px; padding:48px; margin:0 auto;
     display:grid; grid-template-columns:1.4fr .6fr; gap:32px; align-items:center;
   }
-  .ppdb h2{color:#fff; margin-bottom:10px;}
-  .ppdb p{color:#F3D6D7; max-width:480px;}
-  .ppdb .btn-primary{background:#fff; color:var(--red);}
-  .ppdb .btn-primary:hover{background:#F3D6D7;}
+  .spmb h2{color:#fff; margin-bottom:10px;}
+  .spmb p{color:#F3D6D7; max-width:480px;}
+  .spmb .btn-primary{background:#fff; color:var(--red);}
+  .spmb .btn-primary:hover{background:#F3D6D7;}
 
   /* ============ KONTAK ============ */
   .kontak-grid{display:grid; grid-template-columns:1fr 1fr; gap:44px;}
@@ -325,7 +325,7 @@
     .grid-cards{grid-template-columns:repeat(2,1fr);}
     .berita-grid{grid-template-columns:1fr;}
     .galeri-grid{grid-template-columns:repeat(2,1fr);}
-    .ppdb{grid-template-columns:1fr; text-align:center;}
+    .spmb{grid-template-columns:1fr; text-align:center;}
     .footer-grid{grid-template-columns:1fr;}
     section{padding:64px 20px;}
   }
@@ -387,7 +387,7 @@
       </ul>
     </nav>
     <div class="nav-cta">
-      <a href="#ppdb" class="btn btn-primary">PPDB 2027/2028</a>
+      <a href="#spmb" class="btn btn-primary">SPMB 2027/2028</a>
       <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
     </div>
   </div>
@@ -401,7 +401,7 @@
       <p>SMP Negeri 3 Teras adalah sekolah menengah pertama negeri yang berkomitmen membentuk siswa yang cerdas, berakhlak, dan siap bersaing — berlandaskan disiplin, kekeluargaan, dan semangat belajar sepanjang hayat.</p>
       <div class="hero-actions">
         <a href="#profil" class="btn btn-primary">Kenali Sekolah Kami</a>
-        <a href="#ppdb" class="btn btn-ghost">Info Pendaftaran</a>
+        <a href="#spmb" class="btn btn-ghost">Info Pendaftaran</a>
       </div>
     </div>
     <div class="id-card">
@@ -539,24 +539,14 @@
         <p>Kegiatan wajib pembentuk kemandirian dan kedisiplinan.</p>
       </div>
       <div class="fcard">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17M4.8 7.5h14.4M4.8 16.5h14.4"/></svg>
-        <h4>Sepak Bola &amp; Futsal</h4>
-        <p>Melatih kerja sama tim dan sportivitas.</p>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h7v13H4z" /><path d="M13 6h7v13h-7z" /><path d="M4 6c2.5-1.5 4.5-1.5 7 0M13 6c2.5-1.5 4.5-1.5 7 0" /></svg>
+        <h4>Literasi</h4>
+        <p>Melatih kemampuan membaca dan menulis siswa.</p>
       </div>
       <div class="fcard">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4v9a4.5 4.5 0 0 0 9 0V4"/><path d="M9.5 13v6.5M6.5 20h6"/></svg>
-        <h4>Voli</h4>
-        <p>Mengasah kekompakan dan kebugaran fisik siswa.</p>
-      </div>
-      <div class="fcard">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 18V9.5L12 4l7 5.5V18"/><path d="M9 18v-5h6v5"/><circle cx="12" cy="10.5" r="1.2"/></svg>
-        <h4>Paskibra</h4>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 21V4" /><path d="M6 4h11l-2.5 3.5L17 11H6" /></svg>
+        <h4>PBB</h4>
         <p>Membentuk kedisiplinan dan kecintaan pada tanah air.</p>
-      </div>
-      <div class="fcard">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h9l3 3v13H6z"/><path d="M15 4v3h3M9.5 12.5h5M9.5 15.5h5"/></svg>
-        <h4>Karya Ilmiah Remaja</h4>
-        <p>Melatih siswa berpikir kritis dan meneliti.</p>
       </div>
       <div class="fcard">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17V7l16-3v13"/><circle cx="7" cy="17" r="2.2"/><circle cx="17" cy="14.5" r="2.2"/></svg>
@@ -564,12 +554,7 @@
         <p>Ruang berekspresi di bidang seni dan budaya.</p>
       </div>
       <div class="fcard">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6.5c3-1.5 5.5-1.5 8 0 2.5-1.5 5-1.5 8 0v12c-3-1.5-5.5-1.5-8 0-2.5-1.5-5-1.5-8 0Z"/><path d="M12 6.5v12"/></svg>
-        <h4>English Club</h4>
-        <p>Meningkatkan kepercayaan diri berbahasa Inggris.</p>
-      </div>
-      <div class="fcard">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4.5 4 8l8 3.5L20 8Z"/><path d="M7 10v6c0 1.5 2.2 3 5 3s5-1.5 5-3v-6"/></svg>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="2" /><path d="M12 7.5v9M7.5 12h9" /></svg>
         <h4>PMR</h4>
         <p>Melatih kepedulian dan pertolongan pertama.</p>
       </div>
@@ -584,24 +569,14 @@
     <p class="lede">Sebagian pencapaian siswa dan sekolah dalam beberapa waktu terakhir.</p>
     <div class="prestasi-strip">
       <div class="pcard">
-        <span class="rank">Juara 1 · Tingkat Kecamatan</span>
-        <h4>Lomba Cerdas Cermat</h4>
-        <p>Contoh data prestasi — sesuaikan dengan capaian nyata sekolah.</p>
+        <span class="rank">Juara 1 · Tingkat Kabupaten</span>
+        <h4>Wushu - Popda2025</h4>
+        <p>Prestasi non-akademik bidang olahraga.</p>
       </div>
       <div class="pcard">
-        <span class="rank">Juara 2 · Tingkat Kabupaten</span>
-        <h4>Lomba Voli Putri</h4>
-        <p>Contoh data prestasi — sesuaikan dengan capaian nyata sekolah.</p>
-      </div>
-      <div class="pcard">
-        <span class="rank">Juara Harapan 1</span>
-        <h4>Lomba Karya Tulis Ilmiah</h4>
-        <p>Contoh data prestasi — sesuaikan dengan capaian nyata sekolah.</p>
-      </div>
-      <div class="pcard">
-        <span class="rank">Peserta Terbaik</span>
-        <h4>Festival Seni Tari Pelajar</h4>
-        <p>Contoh data prestasi — sesuaikan dengan capaian nyata sekolah.</p>
+        <span class="rank">Juara 1 · Piala Bupati</span>
+        <h4>Taekwondo 2026</h4>
+        <p>Prestasi non-akademik bidang olahraga.</p>
       </div>
     </div>
   </div>
@@ -619,12 +594,11 @@
          3) Kalau berita lebih dari 3, tinggal copy-paste satu blok <div class="bcard">...</div> lagi -->
     <div class="berita-grid">
       <div class="bcard">
-        <div class="bcard-img"><img src="images/berita1.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="bcard-img"><img src="images/galeri3.jpeg" style="width:100%;height:100%;object-fit:cover;"></div>
         <div class="bcard-body">
-          <div class="bcard-date">Senin, 31 Juli 2023</div>
-          <h4>Saking Senangnya Dapat SK PPPK, Guru Ini Jalan Kaki dari Boyolali ke Sukoharjo</h4>
-          <p>Guru Pendidikan Agama Islam SMPN 3 Teras, Yunan Al Maarif, berjalan dari tempatnya mengajar di Teras, Boyolali, menuju
-          rumahnya di Sanggung, Gatak, Sukoharjo, Senin (31/7/2023).</p>
+          <div class="bcard-date">jum'at, 10 juli 2026</div>
+          <h4>MPLS 2026</h4>
+          <p>Menjadi kegiatan pengenalan lingkungan sekolah, guru, tata tertib, dan budaya sekolah bagi peserta didik baru agar siap memulai proses pembelajaran.</p>
         </div>
       </div>
       <div class="bcard">
@@ -661,19 +635,21 @@
       <div class="gitem"><img src="images/galeri2.jpeg"></div>
       <div class="gitem"><img src="images/galeri3.jpeg"></div>
       <div class="gitem tall"><img src="images/galeri4.jpeg"></div>
+      <div class="gitem"><img src="images/galeri3.jpeg"></div>
+      <div class="gitem"><img src="images/galeri2.jpeg"></div>
     </div>
   </div>
 </section>
 
-<section id="ppdb">
+<section id="spmb">
   <div class="wrap">
-    <div class="ppdb">
+    <div class="spmb">
       <div>
         <div class="eyebrow" style="color:#fff;">Penerimaan Peserta Didik Baru</div>
         <h2>Pendaftaran Siswa Baru Dibuka</h2>
         <p>Informasi jadwal, syarat, dan alur pendaftaran akan diumumkan melalui laman ini dan papan pengumuman sekolah.</p>
       </div>
-      <a href="#kontak" class="btn btn-primary">Hubungi Panitia PPDB</a>
+      <a href="#kontak" class="btn btn-primary">Hubungi Panitia SPMB</a>
     </div>
   </div>
 </section>
@@ -738,7 +714,7 @@
           <li><a href="#profil">Profil Sekolah</a></li>
           <li><a href="#fasilitas">Fasilitas</a></li>
           <li><a href="#berita">Berita</a></li>
-          <li><a href="#ppdb">PPDB</a></li>
+          <li><a href="#spmb">SPMB</a></li>
         </ul>
       </div>
       <div>
