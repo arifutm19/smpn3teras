@@ -372,6 +372,43 @@
   transform:translateY(0);
 }
 .back-to-top:hover{background:var(--navy-soft);}
+.fasilitas-modal{
+  display:none;
+  position:fixed; inset:0; z-index:100;
+  background:rgba(19,31,56,.85);
+  align-items:center; justify-content:center;
+  padding:24px;
+}
+.fasilitas-modal.show{ display:flex; }
+.fasilitas-modal-content{
+  background:#fff; border-radius:8px; max-width:520px; width:100%;
+  overflow:hidden; position:relative;
+}
+.fasilitas-modal-content img{
+  width:100%; aspect-ratio:4/3; object-fit:cover; display:block;
+}
+.fasilitas-modal-title{
+  padding:16px 20px; font-family:var(--body); font-weight:700; font-size:16px; color:var(--navy-deep);
+}
+.fasilitas-modal-close{
+  position:absolute; top:10px; right:10px; width:34px; height:34px; border-radius:50%;
+  background:rgba(19,31,56,.7); color:#fff; border:none; font-size:20px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+.fcard{ cursor:pointer; }
+.footer-social{
+  display:flex; gap:12px; margin-top:16px;
+}
+.footer-social a{
+  width:38px; height:38px; border-radius:50%;
+  background:rgba(255,255,255,.08);
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; transition:.15s;
+}
+.footer-social a:hover{
+  background:var(--red);
+}
+.footer-social svg{ width:18px; height:18px; }
 </style>
 </head>
 <body>
@@ -495,47 +532,47 @@
     <h2>Fasilitas Sekolah</h2>
     <p class="lede">Fasilitas yang mendukung kegiatan belajar mengajar, mulai dari ruang kelas hingga ruang penunjang kegiatan siswa.</p>
     <div class="grid-cards">
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-ruang-kelas.jpeg','Ruang Kelas')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5V5.5a1 1 0 0 1 1-1h11l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M15 4.5V9h4.5"/><path d="M8 12h8M8 15.5h5"/></svg>
         <h4>Ruang Kelas</h4>
         <p>Ruang belajar representatif untuk seluruh rombongan belajar.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-perpustakaan.jpeg','Perpustakaan')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h7v13H4z"/><path d="M13 6h7v13h-7z"/><path d="M4 6c2.5-1.5 4.5-1.5 7 0M13 6c2.5-1.5 4.5-1.5 7 0"/></svg>
         <h4>Perpustakaan</h4>
         <p>Koleksi buku pelajaran dan bacaan umum untuk menunjang literasi siswa.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-laboratorium-ipa.jpeg','Laboratorium IPA')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3 5 6.5v4c0 4.5 2.8 7.9 7 9 4.2-1.1 7-4.5 7-9v-4L15 3"/><path d="M9.5 12.5 11.5 14.5 15 10.5"/></svg>
         <h4>Laboratorium IPA</h4>
         <p>Ruang praktikum untuk mendukung pembelajaran sains secara langsung.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-laboratorium-komputer.jpeg','Laboratorium Komputer')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="11" rx="1.2"/><path d="M8 20h8M12 16v4"/></svg>
         <h4>Laboratorium Komputer</h4>
         <p>Menunjang pembelajaran TIK dan literasi digital siswa.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-lapangan-olahraga.jpeg','Lapangan Olahraga')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.4 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.4-3.5-8.5S9.7 5.9 12 3.5Z"/></svg>
         <h4>Lapangan Olahraga</h4>
         <p>Area untuk kegiatan olahraga dan upacara bendera.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-uks.jpeg','UKS')"> 
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c0-3 2.5-5 5-5h6c2.5 0 5 2 5 5"/><circle cx="12" cy="8" r="3.5"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>
         <h4>UKS</h4>
         <p>Ruang kesehatan sekolah untuk penanganan pertama siswa.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-musala.jpeg','Musala')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18V9l8-4 8 4v9"/><path d="M9 18v-5h6v5M4 18h16"/></svg>
         <h4>Musala</h4>
         <p>Tempat ibadah bagi seluruh warga sekolah.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-kantin.jpeg','Kantin Sekolah')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="1.2"/><path d="M4 9.5h16M9.5 4v16"/></svg>
         <h4>Kantin Sekolah</h4>
         <p>Menyediakan makanan sehat bagi siswa selama jam istirahat.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-ruang-senI.jpeg','Ruang Seni')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <circle cx="12" cy="12" r="8.5" />
           <path d="M12 3.5c1 1.5.5 3-1 3.5-1.5.5-2 2-1 3s2.5.5 3-1c.8-2 2.5-2 3.5-.5" />
@@ -546,7 +583,7 @@
         <h4>Ruang Seni</h4>
         <p>Tempat berkarya dan berlatih kesenian siswa.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-aula.jpeg','Aula')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <path d="M4 20V9l8-5 8 5v11" />
           <path d="M4 20h16M9 20v-6h6v6" />
@@ -555,7 +592,7 @@
         <h4>Aula</h4>
         <p>Ruang serbaguna untuk acara dan pertemuan besar sekolah.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-toilet.jpeg','Toilet')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <rect x="5" y="3.5" width="14" height="17" rx="1.5" />
           <circle cx="12" cy="9" r="2.2" />
@@ -564,7 +601,7 @@
         <h4>Toilet</h4>
         <p>Fasilitas kebersihan yang tersebar di area sekolah.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-parkir.jpeg','Tempat Parkir')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <rect x="4" y="4" width="16" height="16" rx="2" />
           <path d="M9.5 8h3a2.2 2.2 0 0 1 0 4.4h-3V8Zm0 4.4V16" />
@@ -582,27 +619,27 @@
     <h2>Ekstrakurikuler</h2>
     <p class="lede">Wadah bagi siswa untuk mengembangkan bakat dan minat di luar kegiatan akademik.</p>
     <div class="grid-cards">
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pramuka.jpeg','Pramuka')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M4 9.5h16M4 14.5h16M9 3.5c-4 6-4 11 0 17M15 3.5c4 6 4 11 0 17"/></svg>
         <h4>Pramuka</h4>
         <p>Kegiatan wajib pembentuk kemandirian dan kedisiplinan.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-literasi.jpeg','Literasi')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h7v13H4z" /><path d="M13 6h7v13h-7z" /><path d="M4 6c2.5-1.5 4.5-1.5 7 0M13 6c2.5-1.5 4.5-1.5 7 0" /></svg>
         <h4>Literasi</h4>
         <p>Melatih kemampuan membaca dan menulis siswa.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pbb.jpeg','PBB')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 21V4" /><path d="M6 4h11l-2.5 3.5L17 11H6" /></svg>
         <h4>PBB</h4>
         <p>Membentuk kedisiplinan dan kecintaan pada tanah air.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-seni.jpeg','Seni Musik & Tari')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17V7l16-3v13"/><circle cx="7" cy="17" r="2.2"/><circle cx="17" cy="14.5" r="2.2"/></svg>
         <h4>Seni Musik &amp; Tari</h4>
         <p>Ruang berekspresi di bidang seni dan budaya.</p>
       </div>
-      <div class="fcard">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pmr.jpeg','PMR')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="2" /><path d="M12 7.5v9M7.5 12h9" /></svg>
         <h4>PMR</h4>
         <p>Melatih kepedulian dan pertolongan pertama.</p>
@@ -729,6 +766,21 @@
           </div>
         </div>
         <p style="font-size:13.5px; max-width:320px; color:#98A5BA;">Sekolah menengah pertama negeri yang berkomitmen mendidik generasi berkarakter dan berprestasi.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/smpn3terasbyl" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+              <circle cx="12" cy="12" r="3.8" />
+              <circle cx="17" cy="7" r="1" />
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@smpn3teras" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M16.5 3c.3 2.1 1.6 3.5 3.7 3.7v3.1c-1.3 0-2.6-.4-3.7-1.1v6.6c0 3.3-2.7 5.7-5.8 5.7-3.2 0-5.8-2.5-5.8-5.7s2.7-5.7 5.8-5.7c.4 0 .8 0 1.1.1v3.2c-.3-.1-.7-.2-1.1-.2-1.5 0-2.7 1.2-2.7 2.6s1.2 2.6 2.7 2.6c1.5 0 2.8-1.1 2.8-2.6V3h3z" />
+            </svg>
+          </a>
+        </div>
       </div>
       <div>
         <h5>Navigasi</h5>
@@ -759,6 +811,13 @@
     <path d="M12 19V5M5 12l7-7 7 7" />
   </svg>
 </button>
+<div class="fasilitas-modal" id="fasilitasModal" onclick="if(event.target===this) closeFasilitasModal()">
+  <div class="fasilitas-modal-content">
+    <button class="fasilitas-modal-close" onclick="closeFasilitasModal()">&times;</button>
+    <img id="fasilitasModalImg" src="" alt="">
+    <div class="fasilitas-modal-title" id="fasilitasModalTitle"></div>
+  </div>
+</div>
 <script>
   const menuBtn = document.getElementById('menuBtn');
   const nav = document.getElementById('mainNav');
@@ -775,6 +834,17 @@
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+    function openFasilitasModal(src, title) {
+        document.getElementById('fasilitasModalImg').src = src;
+        document.getElementById('fasilitasModalTitle').textContent = title;
+        document.getElementById('fasilitasModal').classList.add('show');
+      }
+      function closeFasilitasModal() {
+        document.getElementById('fasilitasModal').classList.remove('show');
+      }
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeFasilitasModal();
+      });
 </script>
 
 </body>
