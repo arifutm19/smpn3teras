@@ -390,6 +390,9 @@
 .fasilitas-modal-title{
   padding:16px 20px; font-family:var(--body); font-weight:700; font-size:16px; color:var(--navy-deep);
 }
+.fasilitas-modal-desc{
+  padding:0 20px 20px; font-family:var(--body); font-size:13.5px; color:var(--ink-soft); line-height:1.6;
+}
 .fasilitas-modal-close{
   position:absolute; top:10px; right:10px; width:34px; height:34px; border-radius:50%;
   background:rgba(19,31,56,.7); color:#fff; border:none; font-size:20px; cursor:pointer;
@@ -532,47 +535,47 @@
     <h2>Fasilitas Sekolah</h2>
     <p class="lede">Fasilitas yang mendukung kegiatan belajar mengajar, mulai dari ruang kelas hingga ruang penunjang kegiatan siswa.</p>
     <div class="grid-cards">
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-ruang-kelas.jpeg','Ruang Kelas')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-ruang-kelas.jpeg','Ruang Kelas','Ruang kelas representatif dilengkapi meja, kursi, papan tulis, dan pencahayaan yang memadai untuk mendukung proses belajar mengajar seluruh rombongan belajar.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5V5.5a1 1 0 0 1 1-1h11l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M15 4.5V9h4.5"/><path d="M8 12h8M8 15.5h5"/></svg>
         <h4>Ruang Kelas</h4>
         <p>Ruang belajar representatif untuk seluruh rombongan belajar.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-perpustakaan.jpeg','Perpustakaan')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-perpustakaan.jpeg','Perpustakaan','Perpustakaan dengan koleksi buku pelajaran dan bacaan umum untuk menunjang literasi siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h7v13H4z"/><path d="M13 6h7v13h-7z"/><path d="M4 6c2.5-1.5 4.5-1.5 7 0M13 6c2.5-1.5 4.5-1.5 7 0"/></svg>
         <h4>Perpustakaan</h4>
         <p>Koleksi buku pelajaran dan bacaan umum untuk menunjang literasi siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-laboratorium-ipa.jpeg','Laboratorium IPA')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-laboratorium-ipa.jpeg','Laboratorium IPA','Laboratorium IPA dengan peralatan modern untuk mendukung pembelajaran sains secara langsung.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3 5 6.5v4c0 4.5 2.8 7.9 7 9 4.2-1.1 7-4.5 7-9v-4L15 3"/><path d="M9.5 12.5 11.5 14.5 15 10.5"/></svg>
         <h4>Laboratorium IPA</h4>
         <p>Ruang praktikum untuk mendukung pembelajaran sains secara langsung.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-laboratorium-komputer.jpeg','Laboratorium Komputer')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-laboratorium-komputer.jpeg','Laboratorium Komputer','Laboratorium Komputer dengan peralatan modern untuk menunjang pembelajaran TIK dan literasi digital siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="11" rx="1.2"/><path d="M8 20h8M12 16v4"/></svg>
         <h4>Laboratorium Komputer</h4>
         <p>Menunjang pembelajaran TIK dan literasi digital siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-lapangan-olahraga.jpeg','Lapangan Olahraga')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-lapangan-olahraga.jpeg','Lapangan Olahraga','Lapangan Olahraga dengan fasilitas lengkap untuk kegiatan olahraga siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.4 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.4-3.5-8.5S9.7 5.9 12 3.5Z"/></svg>
         <h4>Lapangan Olahraga</h4>
         <p>Area untuk kegiatan olahraga dan upacara bendera.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-uks.jpeg','UKS')"> 
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-uks.jpeg','UKS','Ruang kesehatan sekolah untuk penanganan pertama siswa.')"> 
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c0-3 2.5-5 5-5h6c2.5 0 5 2 5 5"/><circle cx="12" cy="8" r="3.5"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>
         <h4>UKS</h4>
         <p>Ruang kesehatan sekolah untuk penanganan pertama siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-musala.jpeg','Musala')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-musala.jpeg','Musala','Tempat ibadah bagi seluruh warga sekolah.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18V9l8-4 8 4v9"/><path d="M9 18v-5h6v5M4 18h16"/></svg>
         <h4>Musala</h4>
         <p>Tempat ibadah bagi seluruh warga sekolah.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-kantin.jpeg','Kantin Sekolah')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-kantin.jpeg','Kantin Sekolah','Kantin sekolah menyediakan makanan sehat bagi siswa selama jam istirahat.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="1.2"/><path d="M4 9.5h16M9.5 4v16"/></svg>
         <h4>Kantin Sekolah</h4>
         <p>Menyediakan makanan sehat bagi siswa selama jam istirahat.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-ruang-senI.jpeg','Ruang Seni')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-ruang-senI.jpeg','Ruang Seni','Ruang seni untuk kegiatan berkarya dan berlatih kesenian siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <circle cx="12" cy="12" r="8.5" />
           <path d="M12 3.5c1 1.5.5 3-1 3.5-1.5.5-2 2-1 3s2.5.5 3-1c.8-2 2.5-2 3.5-.5" />
@@ -583,7 +586,7 @@
         <h4>Ruang Seni</h4>
         <p>Tempat berkarya dan berlatih kesenian siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-aula.jpeg','Aula')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-aula.jpeg','Aula','Aula dengan fasilitas lengkap untuk acara dan pertemuan besar sekolah.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <path d="M4 20V9l8-5 8 5v11" />
           <path d="M4 20h16M9 20v-6h6v6" />
@@ -592,7 +595,7 @@
         <h4>Aula</h4>
         <p>Ruang serbaguna untuk acara dan pertemuan besar sekolah.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-toilet.jpeg','Toilet')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-toilet.jpeg','Toilet','Toilet dengan fasilitas lengkap untuk kenyamanan pengguna.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <rect x="5" y="3.5" width="14" height="17" rx="1.5" />
           <circle cx="12" cy="9" r="2.2" />
@@ -601,7 +604,7 @@
         <h4>Toilet</h4>
         <p>Fasilitas kebersihan yang tersebar di area sekolah.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-parkir.jpeg','Tempat Parkir')">
+      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-parkir.jpeg','Tempat Parkir','Area parkir untuk kendaraan guru, staf, dan tamu sekolah.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <rect x="4" y="4" width="16" height="16" rx="2" />
           <path d="M9.5 8h3a2.2 2.2 0 0 1 0 4.4h-3V8Zm0 4.4V16" />
@@ -619,27 +622,27 @@
     <h2>Ekstrakurikuler</h2>
     <p class="lede">Wadah bagi siswa untuk mengembangkan bakat dan minat di luar kegiatan akademik.</p>
     <div class="grid-cards">
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pramuka.jpeg','Pramuka')">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pramuka.jpeg','Pramuka','Kegiatan wajib pembentuk kemandirian dan kedisiplinan siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M4 9.5h16M4 14.5h16M9 3.5c-4 6-4 11 0 17M15 3.5c4 6 4 11 0 17"/></svg>
         <h4>Pramuka</h4>
-        <p>Kegiatan wajib pembentuk kemandirian dan kedisiplinan.</p>
+        <p>Kegiatan wajib pembentuk kemandirian dan kedisiplinan siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-literasi.jpeg','Literasi')">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-literasi.jpeg','Literasi','Program kegiatan untuk melatih kemampuan membaca dan menulis siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h7v13H4z" /><path d="M13 6h7v13h-7z" /><path d="M4 6c2.5-1.5 4.5-1.5 7 0M13 6c2.5-1.5 4.5-1.5 7 0" /></svg>
         <h4>Literasi</h4>
         <p>Melatih kemampuan membaca dan menulis siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pbb.jpeg','PBB')">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pbb.jpeg','PBB','Program kegiatan untuk membentuk kedisiplinan dan kecintaan pada tanah air.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 21V4" /><path d="M6 4h11l-2.5 3.5L17 11H6" /></svg>
         <h4>PBB</h4>
         <p>Membentuk kedisiplinan dan kecintaan pada tanah air.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-seni.jpeg','Seni Musik & Tari')">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-seni.jpeg','Seni Musik & Tari','Program kegiatan untuk mengembangkan bakat dan minat siswa di bidang seni musik dan tari.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17V7l16-3v13"/><circle cx="7" cy="17" r="2.2"/><circle cx="17" cy="14.5" r="2.2"/></svg>
         <h4>Seni Musik &amp; Tari</h4>
         <p>Ruang berekspresi di bidang seni dan budaya.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pmr.jpeg','PMR')">
+      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pmr.jpeg','PMR','Program kegiatan untuk melatih kepedulian dan pertolongan pertama.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="2" /><path d="M12 7.5v9M7.5 12h9" /></svg>
         <h4>PMR</h4>
         <p>Melatih kepedulian dan pertolongan pertama.</p>
@@ -708,7 +711,7 @@
         <h2>Pendaftaran Siswa Baru Dibuka</h2>
         <p>Informasi jadwal, syarat, dan alur pendaftaran akan diumumkan melalui laman ini dan papan pengumuman sekolah.</p>
       </div>
-      <a href="#kontak" class="btn btn-primary">Hubungi Panitia SPMB</a>
+      <a href="https://spmb.boyolali.go.id/landing/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Klik untuk Informasi SPMB</a>
     </div>
   </div>
 </section>
@@ -816,6 +819,7 @@
     <button class="fasilitas-modal-close" onclick="closeFasilitasModal()">&times;</button>
     <img id="fasilitasModalImg" src="" alt="">
     <div class="fasilitas-modal-title" id="fasilitasModalTitle"></div>
+    <div class="fasilitas-modal-desc" id="fasilitasModalDesc"></div>
   </div>
 </div>
 <script>
@@ -834,9 +838,10 @@
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    function openFasilitasModal(src, title) {
+    function openFasilitasModal(src, title, desc) {
         document.getElementById('fasilitasModalImg').src = src;
         document.getElementById('fasilitasModalTitle').textContent = title;
+        document.getElementById('fasilitasModalDesc').textContent = desc;
         document.getElementById('fasilitasModal').classList.add('show');
       }
       function closeFasilitasModal() {
