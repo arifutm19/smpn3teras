@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Admin - SMPN 3 Teras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: #fff;
+            padding: 32px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 340px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .1);
+        }
+
+        h2 {
+            margin: 0 0 4px;
+        }
+
+        .sub {
+            color: #666;
+            margin: 0 0 20px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 11px;
+            background: #1a73e8;
+            color: #fff;
+            border: 0;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #pesan {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>Login Admin</h2>
+        <p class="sub">SMP Negeri 3 Teras</p>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="btn">Masuk</button>
+        <p id="pesan"></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://wrbwumwpjwgvfclnaxzf.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_lwrrP-o-wfY2VpLeSWgHFQ_uU59LcRA';
+
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        document.getElementById('btn').addEventListener('click', async () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const pesan = document.getElementById('pesan');
+            pesan.textContent = 'Memproses...';
+
+            const { data, error } = await sb.auth.signInWithPassword({ email, password });
+            if (error) {
+                pesan.textContent = 'Login gagal: email atau password salah.';
+                return;
+            }
+
+            // Pastikan akun ini terdaftar sebagai admin
+                  const { data: admin, error: errAdmin } = await sb.from('admins')
+                .select('user_id').eq('user_id', data.user.id).maybeSingle();
+
+            if (errAdmin) {
+                pesan.textContent = 'Error database: ' + errAdmin.message;
+                return;
+            }
+
+            if (!admin) {
+                await sb.auth.signOut();
+                pesan.textContent = 'Akun ini bukan admin.';
+                return;
+            }
+
+                  location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+
+</html>

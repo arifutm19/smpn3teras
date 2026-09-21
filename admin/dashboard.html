@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Admin - SMPN 3 Teras</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            color: #222;
+        }
+
+        header {
+            background: #1a73e8;
+            color: #fff;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        header span {
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        header button {
+            background: #fff;
+            color: #1a73e8;
+            border: 0;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin: 14px 0 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input[type=text],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        textarea {
+            min-height: 140px;
+        }
+
+        .btn {
+            background: #1a73e8;
+            color: #fff;
+            border: 0;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 14px;
+        }
+
+        .btn:disabled {
+            opacity: .6;
+            cursor: wait;
+        }
+
+        .info {
+            font-size: 14px;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+
+        .item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .item .cap {
+            padding: 8px;
+            font-size: 13px;
+        }
+
+        .item button {
+            width: 100%;
+            border: 0;
+            background: #d93025;
+            color: #fff;
+            padding: 7px;
+            cursor: pointer;
+        }
+
+        .foto-kepsek {
+            width: 140px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: none;
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" style="display:none">
+        <header>
+            <strong>Dashboard Admin - SMP Negeri 3 Teras</strong>
+            <div><span id="userEmail"></span><button id="btnLogout">Keluar</button></div>
+        </header>
+
+        <main>
+            <section>
+                <h2>Kepala Sekolah</h2>
+                <img id="kepsekFotoPreview" class="foto-kepsek" alt="Foto kepala sekolah">
+                <label>Ganti foto (kosongkan jika tidak ingin mengganti)</label>
+                <input type="file" id="kepsekFoto" accept="image/*">
+                <label>Nama kepala sekolah</label>
+                <input type="text" id="kepsekNama">
+                <label>Sambutan / informasi</label>
+                <textarea id="kepsekSambutan"></textarea>
+                <button class="btn" id="btnSimpanKepsek">Simpan</button>
+                <p class="info" id="infoKepsek"></p>
+            </section>
+
+            <section>
+                <h2>Galeri Foto</h2>
+                <label>Judul / keterangan foto</label>
+                <input type="text" id="galeriJudul">
+                <label>Pilih foto</label>
+                <input type="file" id="galeriFile" accept="image/*">
+                <button class="btn" id="btnUpload">Upload ke Galeri</button>
+                <p class="info" id="infoGaleri"></p>
+                <div class="grid" id="galeriGrid"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://wrbwumwpjwgvfclnaxzf.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_lwrrP-o-wfY2VpLeSWgHFQ_uU59LcRA';
+        const BUCKET = 'website';
+        const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
+
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const $ = (id) => document.getElementById(id);
+
+        // Upload file ke Storage, hasilnya alamat (URL) foto
+        async function uploadFile(file, folder) {
+            const ext = file.name.split('.').pop().toLowerCase();
+            const path = folder + '/' + Date.now() + '.' + ext;
+            const { error } = await sb.storage.from(BUCKET).upload(path, file);
+            if (error) throw error;
+            return sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+        }
+
+        // ---------- GALERI ----------
+        async function loadGaleri() {
+            const grid = $('galeriGrid');
+            grid.innerHTML = '';
+            const { data, error } = await sb.from('gallery')
+                .select('*').order('created_at', { ascending: false });
+            if (error) { grid.textContent = 'Gagal memuat: ' + error.message; return; }
+            if (!data.length) { grid.textContent = 'Belum ada foto.'; return; }
+
+            data.forEach((item) => {
+                const div = document.createElement('div');
+                div.className = 'item';
+                const img = document.createElement('img');
+                img.src = item.image_url;
+                img.alt = item.title || '';
+                const cap = document.createElement('div');
+                cap.className = 'cap';
+                cap.textContent = item.title || '(tanpa judul)';
+                const btn = document.createElement('button');
+                btn.textContent = 'Hapus';
+                btn.onclick = () => hapusFoto(item);
+                div.append(img, cap, btn);
+                grid.appendChild(div);
+            });
+        }
+
+        async function hapusFoto(item) {
+            if (!confirm('Hapus foto ini?')) return;
+            const path = item.image_url.split('/' + BUCKET + '/')[1];
+            if (path) await sb.storage.from(BUCKET).remove([path]);
+            const { error } = await sb.from('gallery').delete().eq('id', item.id);
+            if (error) return alert('Gagal menghapus: ' + error.message);
+            loadGaleri();
+        }
+
+        $('btnUpload').onclick = async () => {
+            const file = $('galeriFile').files[0];
+            const judul = $('galeriJudul').value.trim();
+            const info = $('infoGaleri');
+            const btn = $('btnUpload');
+            if (!file) { info.textContent = 'Pilih foto dulu.'; return; }
+            if (file.size > MAX_SIZE) { info.textContent = 'Ukuran foto maksimal 5 MB.'; return; }
+
+            btn.disabled = true;
+            info.textContent = 'Mengupload...';
+            try {
+                const url = await uploadFile(file, 'galeri');
+                const { error } = await sb.from('gallery').insert({ title: judul, image_url: url });
+                if (error) throw error;
+                info.textContent = 'Foto berhasil ditambahkan.';
+                $('galeriFile').value = '';
+                $('galeriJudul').value = '';
+                loadGaleri();
+            } catch (e) {
+                info.textContent = 'Gagal: ' + e.message;
+            }
+            btn.disabled = false;
+        };
+
+        // ---------- KEPALA SEKOLAH ----------
+        async function loadKepsek() {
+            const { data } = await sb.from('site_settings').select('*');
+            const s = {};
+            (data || []).forEach((r) => { s[r.key] = r.value; });
+            $('kepsekNama').value = s.kepsek_nama || '';
+            $('kepsekSambutan').value = s.kepsek_sambutan || '';
+            if (s.kepsek_foto) {
+                $('kepsekFotoPreview').src = s.kepsek_foto;
+                $('kepsekFotoPreview').style.display = 'block';
+            }
+        }
+
+        $('btnSimpanKepsek').onclick = async () => {
+            const info = $('infoKepsek');
+            const btn = $('btnSimpanKepsek');
+            const file = $('kepsekFoto').files[0];
+            if (file && file.size > MAX_SIZE) { info.textContent = 'Ukuran foto maksimal 5 MB.'; return; }
+
+            btn.disabled = true;
+            info.textContent = 'Menyimpan...';
+            try {
+                const rows = [
+                    { key: 'kepsek_nama', value: $('kepsekNama').value.trim() },
+                    { key: 'kepsek_sambutan', value: $('kepsekSambutan').value.trim() }
+                ];
+                if (file) {
+                    const url = await uploadFile(file, 'kepsek');
+                    rows.push({ key: 'kepsek_foto', value: url });
+                }
+                const { error } = await sb.from('site_settings').upsert(rows);
+                if (error) throw error;
+                info.textContent = 'Berhasil disimpan.';
+                $('kepsekFoto').value = '';
+                loadKepsek();
+            } catch (e) {
+                info.textContent = 'Gagal: ' + e.message;
+            }
+            btn.disabled = false;
+        };
+
+        // ---------- LOGOUT ----------
+        $('btnLogout').onclick = async () => {
+            await sb.auth.signOut();
+            location.href = 'login.html';
+        };
+
+        // ---------- CEK LOGIN SAAT HALAMAN DIBUKA ----------
+        async function init() {
+            const { data: { session } } = await sb.auth.getSession();
+            if (!session) { location.href = 'login.html'; return; }
+
+            const { data: admin } = await sb.from('admins')
+                .select('user_id').eq('user_id', session.user.id).maybeSingle();
+            if (!admin) {
+                await sb.auth.signOut();
+                location.href = 'login.html';
+                return;
+            }
+
+            $('userEmail').textContent = session.user.email;
+            $('app').style.display = 'block';
+            loadKepsek();
+            loadGaleri();
+        }
+        init();
+    </script>
+</body>
+
+</html>
