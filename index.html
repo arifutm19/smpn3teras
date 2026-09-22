@@ -656,18 +656,7 @@
     <div class="eyebrow">Prestasi Siswa</div>
     <h2>Karya &amp; Pencapaian</h2>
     <p class="lede">Sebagian pencapaian siswa dan sekolah dalam beberapa waktu terakhir.</p>
-    <div class="prestasi-strip">
-      <div class="pcard">
-        <span class="rank">Juara 1 · Tingkat Kabupaten</span>
-        <h4>Wushu - Popda2025</h4>
-        <p>Prestasi non-akademik bidang olahraga.</p>
-      </div>
-      <div class="pcard">
-        <span class="rank">Juara 1 · Piala Bupati</span>
-        <h4>Taekwondo 2026</h4>
-        <p>Prestasi non-akademik bidang olahraga.</p>
-      </div>
-    </div>
+    <div class="prestasi-strip" id="prestasiStrip"></div>
   </div>
 </section>
 
@@ -676,6 +665,9 @@
     <div class="eyebrow">Informasi Sekolah</div>
     <h2>Berita &amp; Pengumuman</h2>
     <p class="lede">Kabar terbaru seputar kegiatan dan pengumuman resmi sekolah.</p>
+    <div class="berita-grid" id="beritaGrid" style="margin-bottom:56px;"></div>
+    
+    <div class="eyebrow">Update TikTok</div>
     <div style="max-width:100%; overflow:hidden;">
       <script src="https://elfsightcdn.com/platform.js" async></script>
       <div class="elfsight-app-dd10222e-a9c8-4186-b7b1-8612c05b07d0" data-elfsight-app-lazy></div>
@@ -877,6 +869,73 @@
         if (s.kepsek_foto) {
           document.getElementById('kepsekFoto').src = s.kepsek_foto;
         }
+      }
+      // ---- Prestasi ----
+      const { data: prestasi } = await sb.from('prestasi')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      const prestasiStrip = document.getElementById('prestasiStrip');
+      if (prestasi && prestasi.length) {
+        prestasiStrip.innerHTML = '';
+        prestasi.forEach((p) => {
+          const card = document.createElement('div');
+          card.className = 'pcard';
+          card.innerHTML = `
+          <span class="rank">${p.tingkat}</span>
+          <h4>${p.judul}</h4>
+          <p>${p.keterangan || ''}</p>
+        `;
+          prestasiStrip.appendChild(card);
+        });
+      } else {
+        prestasiStrip.innerHTML = '<p style="color:var(--ink-soft);">Belum ada prestasi yang ditambahkan.</p>';
+      }
+      // ---- Pengumuman ----
+      const { data: berita } = await sb.from('berita')
+        .select('*')
+        .order('tanggal', { ascending: false })
+        .limit(6);
+
+      const beritaGrid = document.getElementById('beritaGrid');
+      if (berita && berita.length) {
+        beritaGrid.innerHTML = '';
+        const bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        berita.forEach((b) => {
+          const d = new Date(b.tanggal);
+          const tanggalTampil = isNaN(d) ? b.tanggal : `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+
+          const card = document.createElement('div');
+          card.className = 'bcard';
+
+          const imgWrap = document.createElement('div');
+          imgWrap.className = 'bcard-img';
+          if (b.gambar_url) {
+            const img = document.createElement('img');
+            img.src = b.gambar_url;
+            img.alt = b.judul;
+            img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+            img.loading = 'lazy';
+            imgWrap.style.padding = '0';
+            imgWrap.appendChild(img);
+          } else {
+            imgWrap.textContent = 'SMP Negeri 3 Teras';
+          }
+
+          const body = document.createElement('div');
+          body.className = 'bcard-body';
+          body.innerHTML = `
+          <div class="bcard-date">${tanggalTampil}</div>
+          <h4>${b.judul}</h4>
+          <p>${b.isi.length > 140 ? b.isi.slice(0, 140) + '...' : b.isi}</p>
+        `;
+
+          card.appendChild(imgWrap);
+          card.appendChild(body);
+          beritaGrid.appendChild(card);
+        });
+      } else {
+        beritaGrid.style.display = 'none';
       }
 
       // ---- Galeri ----

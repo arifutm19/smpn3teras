@@ -179,7 +179,35 @@
                 <input type="file" id="galeriFile" accept="image/*">
                 <button class="btn" id="btnUpload">Upload ke Galeri</button>
                 <p class="info" id="infoGaleri"></p>
-                <div class="grid" id="galeriGrid"></div>
+        <div class="grid" id="galeriGrid"></div>
+        </section>
+        
+        <section>
+            <h2>Prestasi Siswa</h2>
+            <label>Tingkat (contoh: Juara 1 · Tingkat Kabupaten)</label>
+            <input type="text" id="prestasiTingkat">
+            <label>Judul (contoh: Wushu - Popda 2025)</label>
+            <input type="text" id="prestasiJudul">
+            <label>Keterangan singkat</label>
+            <input type="text" id="prestasiKet">
+            <button class="btn" id="btnSimpanPrestasi">Tambah Prestasi</button>
+            <p class="info" id="infoPrestasi"></p>
+            <div id="prestasiList" style="margin-top:20px;"></div>
+            </section>
+            
+            <section>
+                <h2>Pengumuman Resmi</h2>
+                <label>Judul pengumuman</label>
+                <input type="text" id="beritaJudul">
+                <label>Tanggal</label>
+                <input type="text" id="beritaTanggal" placeholder="YYYY-MM-DD, contoh: 2026-09-22">
+                <label>Isi pengumuman</label>
+                <textarea id="beritaIsi"></textarea>
+                <label>Foto (opsional)</label>
+                <input type="file" id="beritaFile" accept="image/*">
+                <button class="btn" id="btnSimpanBerita">Tambah Pengumuman</button>
+                <p class="info" id="infoBerita"></p>
+                <div id="beritaList" style="margin-top:20px;"></div>
             </section>
         </main>
     </div>
@@ -302,6 +330,132 @@
             }
             btn.disabled = false;
         };
+        // ---------- PRESTASI ----------
+        async function loadPrestasi() {
+            const list = $('prestasiList');
+            list.innerHTML = 'Memuat...';
+            const { data, error } = await sb.from('prestasi')
+                .select('*').order('created_at', { ascending: false });
+            if (error) { list.textContent = 'Gagal memuat: ' + error.message; return; }
+            if (!data.length) { list.textContent = 'Belum ada prestasi.'; return; }
+
+            list.innerHTML = '';
+            data.forEach((p) => {
+                const div = document.createElement('div');
+                div.style.cssText = 'border:1px solid #ddd;border-radius:8px;padding:14px;margin-bottom:10px;';
+                div.innerHTML = `
+          <div style="font-size:12px;color:#b8860b;font-family:monospace;">${p.tingkat}</div>
+          <div style="font-weight:bold;margin:4px 0;">${p.judul}</div>
+          <div style="font-size:13px;color:#555;">${p.keterangan || ''}</div>
+        `;
+                const btn = document.createElement('button');
+                btn.textContent = 'Hapus';
+                btn.style.cssText = 'margin-top:8px;background:#d93025;color:#fff;border:0;padding:6px 12px;border-radius:6px;cursor:pointer;';
+                btn.onclick = () => hapusPrestasi(p);
+                div.appendChild(btn);
+                list.appendChild(div);
+            });
+        }
+
+        async function hapusPrestasi(p) {
+            if (!confirm('Hapus prestasi "' + p.judul + '"?')) return;
+            const { error } = await sb.from('prestasi').delete().eq('id', p.id);
+            if (error) return alert('Gagal menghapus: ' + error.message);
+            loadPrestasi();
+        }
+
+        $('btnSimpanPrestasi').onclick = async () => {
+            const info = $('infoPrestasi');
+            const btn = $('btnSimpanPrestasi');
+            const tingkat = $('prestasiTingkat').value.trim();
+            const judul = $('prestasiJudul').value.trim();
+            const keterangan = $('prestasiKet').value.trim();
+
+            if (!tingkat || !judul) { info.textContent = 'Tingkat dan judul wajib diisi.'; return; }
+
+            btn.disabled = true;
+            info.textContent = 'Menyimpan...';
+            const { error } = await sb.from('prestasi').insert({ tingkat, judul, keterangan });
+            if (error) {
+                info.textContent = 'Gagal: ' + error.message;
+            } else {
+                info.textContent = 'Prestasi ditambahkan.';
+                $('prestasiTingkat').value = '';
+                $('prestasiJudul').value = '';
+                $('prestasiKet').value = '';
+                loadPrestasi();
+            }
+            btn.disabled = false;
+        };
+        // ---------- BERITA ----------
+        async function loadBerita() {
+            const list = $('beritaList');
+            list.innerHTML = 'Memuat...';
+            const { data, error } = await sb.from('berita')
+                .select('*').order('tanggal', { ascending: false });
+            if (error) { list.textContent = 'Gagal memuat: ' + error.message; return; }
+            if (!data.length) { list.textContent = 'Belum ada pengumuman.'; return; }
+
+            list.innerHTML = '';
+            data.forEach((b) => {
+                const div = document.createElement('div');
+                div.style.cssText = 'border:1px solid #ddd;border-radius:8px;padding:14px;margin-bottom:10px;';
+                div.innerHTML = `
+          <div style="font-size:12px;color:#888;font-family:monospace;">${b.tanggal}</div>
+          <div style="font-weight:bold;margin:4px 0;">${b.judul}</div>
+          <div style="font-size:13px;color:#555;">${b.isi.slice(0, 120)}${b.isi.length > 120 ? '...' : ''}</div>
+        `;
+                const btn = document.createElement('button');
+                btn.textContent = 'Hapus';
+                btn.style.cssText = 'margin-top:8px;background:#d93025;color:#fff;border:0;padding:6px 12px;border-radius:6px;cursor:pointer;';
+                btn.onclick = () => hapusBerita(b);
+                div.appendChild(btn);
+                list.appendChild(div);
+            });
+        }
+
+        async function hapusBerita(b) {
+            if (!confirm('Hapus pengumuman "' + b.judul + '"?')) return;
+            if (b.gambar_url) {
+                const path = b.gambar_url.split('/' + BUCKET + '/')[1];
+                if (path) await sb.storage.from(BUCKET).remove([path]);
+            }
+            const { error } = await sb.from('berita').delete().eq('id', b.id);
+            if (error) return alert('Gagal menghapus: ' + error.message);
+            loadBerita();
+        }
+
+        $('btnSimpanBerita').onclick = async () => {
+            const info = $('infoBerita');
+            const btn = $('btnSimpanBerita');
+            const judul = $('beritaJudul').value.trim();
+            const isi = $('beritaIsi').value.trim();
+            const tanggal = $('beritaTanggal').value.trim() || new Date().toISOString().slice(0, 10);
+            const file = $('beritaFile').files[0];
+
+            if (!judul || !isi) { info.textContent = 'Judul dan isi wajib diisi.'; return; }
+            if (file && file.size > MAX_SIZE) { info.textContent = 'Ukuran foto maksimal 5 MB.'; return; }
+
+            btn.disabled = true;
+            info.textContent = 'Menyimpan...';
+            try {
+                let gambar_url = null;
+                if (file) gambar_url = await uploadFile(file, 'berita');
+
+                const { error } = await sb.from('berita').insert({ judul, isi, tanggal, gambar_url });
+                if (error) throw error;
+
+                info.textContent = 'Pengumuman ditambahkan.';
+                $('beritaJudul').value = '';
+                $('beritaIsi').value = '';
+                $('beritaTanggal').value = '';
+                $('beritaFile').value = '';
+                loadBerita();
+            } catch (e) {
+                info.textContent = 'Gagal: ' + e.message;
+            }
+            btn.disabled = false;
+        };
 
         // ---------- LOGOUT ----------
         $('btnLogout').onclick = async () => {
@@ -326,6 +480,8 @@
             $('app').style.display = 'block';
             loadKepsek();
             loadGaleri();
+            loadPrestasi();
+            loadBerita();
         }
         init();
     </script>
