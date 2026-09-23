@@ -421,7 +421,7 @@
     <a href="#beranda" class="brand" style="cursor:pointer;">
       <!-- 🖼️ GANTI LOGO DI SINI: hapus <div class="badge">S3T</div> di bawah ini,
            ganti dengan: <img src="images/logo.png" style="width:44px;height:44px;border-radius:50%;object-fit:cover;"> -->
-      <img src="images/logo.png" style="width:44px;height:44px;border-radius:50%;object-fit:cover;">
+      <img id="logoHeader" src="images/logo.png" style="width:44px;height:44px;border-radius:50%;object-fit:cover;">
       <div class="brand-text">
         <div class="school-name">SMP Negeri 3 Teras</div>
         <div class="school-sub">Boyolali · Jawa Tengah</div>
@@ -461,27 +461,38 @@
       <div class="id-card-head">
         <div class="tag">Identitas<strong>Sekolah</strong></div>
         <!-- ✏️ GANTI: "No. 03" bisa diisi Nomor Statistik Sekolah (NSS) atau NPSN -->
-        <div style="font-family:var(--mono); font-size:10px; color:var(--ink-soft);">NPSN.20308495</div>
+        <div id="npsnText" style="font-family:var(--mono); font-size:10px; color:var(--ink-soft);">NPSN.20308495</div>
       </div>
       <!-- 🖼️ GANTI FOTO DI SINI: hapus "Foto siswa menyusul" di bawah, ganti jadi:
            <img src="images/logo-atau-foto.jpg" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;margin-bottom:16px;"> -->
-      <img src="images/logo.jpeg"
+      <img id="identitasFotoImg" src="images/logo.jpeg"
         style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;margin-bottom:16px;">
       <div class="id-field"><span>Sekolah</span><b>SMPN 3 Teras</b></div>
       <!-- ✏️ GANTI "—" dengan nilai akreditasi resmi sekolah, misal: A / B / Belum Terakreditasi -->
-      <div class="id-field"><span>Akreditasi</span><b>A</b></div>
-      <!-- ✏️ GANTI "—" dengan tahun sekolah ini berdiri -->
-      <div class="id-field"><span>Tahun Berdiri</span><b>1989</b></div>
+<div class="id-field"><span>Akreditasi</span><b id="akreditasiText">A</b></div>
+<div class="id-field"><span>Tahun Berdiri</span><b id="tahunBerdiriText">1989</b></div>
       <div class="id-field" style="border-bottom:none;"><span>Status</span><b>Negeri</b></div>
     </div>
   </div>
   <div class="wrap">
     <!-- ✏️ GANTI ANGKA "—" DI BAWAH dengan data asli sekolah (jumlah siswa, guru, rombel, akreditasi) -->
     <div class="stat-strip">
-      <div><div class="stat-num">323</div><div class="stat-label">Siswa aktif</div></div>
-      <div><div class="stat-num">18</div><div class="stat-label">Tenaga pendidik</div></div>
-      <div><div class="stat-num">3</div><div class="stat-label">staf</div></div>
-      <div><div class="stat-num">A</div><div class="stat-label">Akreditasi*</div></div>
+      <div>
+        <div class="stat-num" id="statSiswaNum">323</div>
+        <div class="stat-label">Siswa aktif</div>
+      </div>
+      <div>
+        <div class="stat-num" id="statGuruNum">18</div>
+        <div class="stat-label">Tenaga pendidik</div>
+      </div>
+      <div>
+        <div class="stat-num" id="statStafNum">3</div>
+        <div class="stat-label">staf</div>
+      </div>
+      <div>
+        <div class="stat-num" id="statAkreditasiNum">A</div>
+        <div class="stat-label">Akreditasi*</div>
+      </div>
     </div>
   </div>
 </section>
@@ -514,20 +525,24 @@
     <div class="profil-grid">
       <div class="vm-card">
         <h3>Visi</h3>
-        <p>Terwujudnya Peserta Didik yang Beriman dan bertaqwa kepada Tuhan Yang Maha Esa dan Beraklak Mulia, Berprestasi, Terampil, Kompetitif, dan Peduli Terhadap Lingkungan.<em style="color:var(--ink-soft); font-size:13px;"></em></p>
+        <p id="visiText">Terwujudnya Peserta Didik yang Beriman dan bertaqwa kepada Tuhan Yang Maha Esa dan Beraklak Mulia,
+          Berprestasi, Terampil, Kompetitif, dan Peduli Terhadap Lingkungan.</p>
       </div>
       <div class="vm-card">
         <h3>Misi</h3>
-        <ul>
+        <ul id="misiList">
           <li><span>01</span> Meningkatkan kualitas pembelajaran yang aktif, inovatif, dan berpusat pada peserta didik.</li>
-          <li><span>02</span> Meningkatkan kompetensi dan profesionalisme pendidik serta tenaga kependidikan melalui pelatihan, refleksi, dan pengembangan berkelanjutan.</li>
-          <li><span>03</span> Mewujudkan lingkungan sekolah yang aman, inklusif, berkarakter, dan menjunjung kebinekaan sehingga tercipta suasana belajar yang nyaman.</li>
-          <li><span>04</span> Meningkatkan tata kelola sekolah yang efektif melalui pemanfaatan teknologi, partisipasi warga sekolah, serta pengelolaan sumber daya yang transparan dan akuntabel.</li>
+          <li><span>02</span> Meningkatkan kompetensi dan profesionalisme pendidik serta tenaga kependidikan melalui
+            pelatihan, refleksi, dan pengembangan berkelanjutan.</li>
+          <li><span>03</span> Mewujudkan lingkungan sekolah yang aman, inklusif, berkarakter, dan menjunjung kebinekaan
+            sehingga tercipta suasana belajar yang nyaman.</li>
+          <li><span>04</span> Meningkatkan tata kelola sekolah yang efektif melalui pemanfaatan teknologi, partisipasi warga
+            sekolah, serta pengelolaan sumber daya yang transparan dan akuntabel.</li>
         </ul>
       </div>
     </div>
-  </div>
-</section>
+    </div>
+    </section>
 
 <section id="fasilitas">
   <div class="wrap">
@@ -535,47 +550,49 @@
     <h2>Fasilitas Sekolah</h2>
     <p class="lede">Fasilitas yang mendukung kegiatan belajar mengajar, mulai dari ruang kelas hingga ruang penunjang kegiatan siswa.</p>
     <div class="grid-cards">
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-ruang-kelas.jpeg','Ruang Kelas','Ruang kelas representatif dilengkapi meja, kursi, papan tulis, dan pencahayaan yang memadai untuk mendukung proses belajar mengajar seluruh rombongan belajar.')">
+      <div class="fcard" data-slug="ruang-kelas" onclick="openFasilitasModal('images/fasilitas-ruang-kelas.jpeg','Ruang Kelas','Ruang kelas representatif...')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5V5.5a1 1 0 0 1 1-1h11l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M15 4.5V9h4.5"/><path d="M8 12h8M8 15.5h5"/></svg>
         <h4>Ruang Kelas</h4>
         <p>Ruang belajar representatif untuk seluruh rombongan belajar.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-perpustakaan.jpeg','Perpustakaan','Perpustakaan dengan koleksi buku pelajaran dan bacaan umum untuk menunjang literasi siswa.')">
+      <div class="fcard" data-slug="perpustakaan" onclick="openFasilitasModal('images/fasilitas-perpustakaan.jpeg','Perpustakaan','Perpustakaan dengan koleksi buku pelajaran dan bacaan umum untuk menunjang literasi siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h7v13H4z"/><path d="M13 6h7v13h-7z"/><path d="M4 6c2.5-1.5 4.5-1.5 7 0M13 6c2.5-1.5 4.5-1.5 7 0"/></svg>
         <h4>Perpustakaan</h4>
         <p>Koleksi buku pelajaran dan bacaan umum untuk menunjang literasi siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-laboratorium-ipa.jpeg','Laboratorium IPA','Laboratorium IPA dengan peralatan modern untuk mendukung pembelajaran sains secara langsung.')">
+      <div class="fcard" data-slug="lab-ipa"
+        onclick="openFasilitasModal('images/fasilitas-laboratorium-ipa.jpeg','Laboratorium IPA', ...)">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3 5 6.5v4c0 4.5 2.8 7.9 7 9 4.2-1.1 7-4.5 7-9v-4L15 3"/><path d="M9.5 12.5 11.5 14.5 15 10.5"/></svg>
         <h4>Laboratorium IPA</h4>
         <p>Ruang praktikum untuk mendukung pembelajaran sains secara langsung.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-laboratorium-komputer.jpeg','Laboratorium Komputer','Laboratorium Komputer dengan peralatan modern untuk menunjang pembelajaran TIK dan literasi digital siswa.')">
+      <div class="fcard" data-slug="lab-komputer"
+        onclick="openFasilitasModal('images/fasilitas-laboratorium-komputer.jpeg','Laboratorium Komputer', ...)">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="11" rx="1.2"/><path d="M8 20h8M12 16v4"/></svg>
         <h4>Laboratorium Komputer</h4>
         <p>Menunjang pembelajaran TIK dan literasi digital siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-lapangan-olahraga.jpeg','Lapangan Olahraga','Lapangan Olahraga dengan fasilitas lengkap untuk kegiatan olahraga siswa.')">
+      <div class="fcard" data-slug="lapangan-olahraga"   onclick="openFasilitasModal('images/fasilitas-lapangan-olahraga.jpeg','Lapangan Olahraga','Lapangan Olahraga dengan fasilitas lengkap untuk kegiatan olahraga siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.4 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.4-3.5-8.5S9.7 5.9 12 3.5Z"/></svg>
         <h4>Lapangan Olahraga</h4>
         <p>Area untuk kegiatan olahraga dan upacara bendera.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-uks.jpeg','UKS','Ruang kesehatan sekolah untuk penanganan pertama siswa.')"> 
+      <div class="fcard" data-slug="uks" onclick="openFasilitasModal('images/fasilitas-uks.jpeg','UKS','Ruang kesehatan sekolah untuk penanganan pertama siswa.')"> 
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c0-3 2.5-5 5-5h6c2.5 0 5 2 5 5"/><circle cx="12" cy="8" r="3.5"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>
         <h4>UKS</h4>
         <p>Ruang kesehatan sekolah untuk penanganan pertama siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-musala.jpeg','Musala','Tempat ibadah bagi seluruh warga sekolah.')">
+      <div class="fcard" data-slug="musala" onclick="openFasilitasModal('images/fasilitas-musala.jpeg','Musala','Tempat ibadah bagi seluruh warga sekolah.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18V9l8-4 8 4v9"/><path d="M9 18v-5h6v5M4 18h16"/></svg>
         <h4>Musala</h4>
         <p>Tempat ibadah bagi seluruh warga sekolah.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-kantin.jpeg','Kantin Sekolah','Kantin sekolah menyediakan makanan sehat bagi siswa selama jam istirahat.')">
+      <div class="fcard" data-slug="kantin" onclick="openFasilitasModal('images/fasilitas-kantin.jpeg','Kantin Sekolah','Kantin sekolah menyediakan makanan sehat bagi siswa selama jam istirahat.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="1.2"/><path d="M4 9.5h16M9.5 4v16"/></svg>
         <h4>Kantin Sekolah</h4>
         <p>Menyediakan makanan sehat bagi siswa selama jam istirahat.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-ruang-senI.jpeg','Ruang Seni','Ruang seni untuk kegiatan berkarya dan berlatih kesenian siswa.')">
+      <div class="fcard" data-slug="ruang-seni" onclick="openFasilitasModal('images/fasilitas-ruang-senI.jpeg','Ruang Seni','Ruang seni untuk kegiatan berkarya dan berlatih kesenian siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <circle cx="12" cy="12" r="8.5" />
           <path d="M12 3.5c1 1.5.5 3-1 3.5-1.5.5-2 2-1 3s2.5.5 3-1c.8-2 2.5-2 3.5-.5" />
@@ -586,7 +603,7 @@
         <h4>Ruang Seni</h4>
         <p>Tempat berkarya dan berlatih kesenian siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-aula.jpeg','Aula','Aula dengan fasilitas lengkap untuk acara dan pertemuan besar sekolah.')">
+      <div class="fcard" data-slug="aula" onclick="openFasilitasModal('images/fasilitas-aula.jpeg','Aula','Aula dengan fasilitas lengkap untuk acara dan pertemuan besar sekolah.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <path d="M4 20V9l8-5 8 5v11" />
           <path d="M4 20h16M9 20v-6h6v6" />
@@ -595,7 +612,7 @@
         <h4>Aula</h4>
         <p>Ruang serbaguna untuk acara dan pertemuan besar sekolah.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-toilet.jpeg','Toilet','Toilet dengan fasilitas lengkap untuk kenyamanan pengguna.')">
+      <div class="fcard" data-slug="toilet" onclick="openFasilitasModal('images/fasilitas-toilet.jpeg','Toilet','Toilet dengan fasilitas lengkap untuk kenyamanan pengguna.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <rect x="5" y="3.5" width="14" height="17" rx="1.5" />
           <circle cx="12" cy="9" r="2.2" />
@@ -604,7 +621,7 @@
         <h4>Toilet</h4>
         <p>Fasilitas kebersihan yang tersebar di area sekolah.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/fasilitas-parkir.jpeg','Tempat Parkir','Area parkir untuk kendaraan guru, staf, dan tamu sekolah.')">
+      <div class="fcard" data-slug="parkir" onclick="openFasilitasModal('images/fasilitas-parkir.jpeg','Tempat Parkir','Area parkir untuk kendaraan guru, staf, dan tamu sekolah.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <rect x="4" y="4" width="16" height="16" rx="2" />
           <path d="M9.5 8h3a2.2 2.2 0 0 1 0 4.4h-3V8Zm0 4.4V16" />
@@ -621,28 +638,28 @@
     <div class="eyebrow" style="color:var(--gold)">Pengembangan Diri</div>
     <h2>Ekstrakurikuler</h2>
     <p class="lede">Wadah bagi siswa untuk mengembangkan bakat dan minat di luar kegiatan akademik.</p>
-    <div class="grid-cards">
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pramuka.jpeg','Pramuka','Kegiatan wajib pembentuk kemandirian dan kedisiplinan siswa.')">
+    <div class="grid-cards">    
+      <div class="fcard" data-slug="pramuka" onclick="openFasilitasModal('images/ekskul-pramuka.jpeg','Pramuka','Kegiatan wajib pembentuk kemandirian dan kedisiplinan siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M4 9.5h16M4 14.5h16M9 3.5c-4 6-4 11 0 17M15 3.5c4 6 4 11 0 17"/></svg>
         <h4>Pramuka</h4>
         <p>Kegiatan wajib pembentuk kemandirian dan kedisiplinan siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-literasi.jpeg','Literasi','Program kegiatan untuk melatih kemampuan membaca dan menulis siswa.')">
+      <div class="fcard" data-slug="literasi" onclick="openFasilitasModal('images/ekskul-literasi.jpeg','Literasi','Program kegiatan untuk melatih kemampuan membaca dan menulis siswa.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h7v13H4z" /><path d="M13 6h7v13h-7z" /><path d="M4 6c2.5-1.5 4.5-1.5 7 0M13 6c2.5-1.5 4.5-1.5 7 0" /></svg>
         <h4>Literasi</h4>
         <p>Melatih kemampuan membaca dan menulis siswa.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pbb.jpeg','PBB','Program kegiatan untuk membentuk kedisiplinan dan kecintaan pada tanah air.')">
+      <div class="fcard" data-slug="pbb" onclick="openFasilitasModal('images/ekskul-pbb.jpeg','PBB','Program kegiatan untuk membentuk kedisiplinan dan kecintaan pada tanah air.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 21V4" /><path d="M6 4h11l-2.5 3.5L17 11H6" /></svg>
         <h4>PBB</h4>
         <p>Membentuk kedisiplinan dan kecintaan pada tanah air.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-seni.jpeg','Seni Musik & Tari','Program kegiatan untuk mengembangkan bakat dan minat siswa di bidang seni musik dan tari.')">
+      <div class="fcard" data-slug="seni" onclick="openFasilitasModal('images/ekskul-seni.jpeg','Seni Musik & Tari','Program kegiatan untuk mengembangkan bakat dan minat siswa di bidang seni musik dan tari.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17V7l16-3v13"/><circle cx="7" cy="17" r="2.2"/><circle cx="17" cy="14.5" r="2.2"/></svg>
         <h4>Seni Musik &amp; Tari</h4>
         <p>Ruang berekspresi di bidang seni dan budaya.</p>
       </div>
-      <div class="fcard" onclick="openFasilitasModal('images/ekskul-pmr.jpeg','PMR','Program kegiatan untuk melatih kepedulian dan pertolongan pertama.')">
+      <div class="fcard" data-slug="pmr" onclick="openFasilitasModal('images/ekskul-pmr.jpeg','PMR','Program kegiatan untuk melatih kepedulian dan pertolongan pertama.')">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="2" /><path d="M12 7.5v9M7.5 12h9" /></svg>
         <h4>PMR</h4>
         <p>Melatih kepedulian dan pertolongan pertama.</p>
@@ -703,7 +720,7 @@
         <h2>Pendaftaran Siswa Baru Dibuka</h2>
         <p>Informasi jadwal, syarat, dan alur pendaftaran akan diumumkan melalui laman ini dan papan pengumuman sekolah.</p>
       </div>
-      <a href="https://spmb.boyolali.go.id/landing/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Klik untuk Informasi SPMB</a>
+      <a id="spmbLink" href="https://spmb.boyolali.go.id/landing/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Klik untuk Informasi SPMB</a>
     </div>
   </div>
 </section>
@@ -720,19 +737,19 @@
       <div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
-          <div><b>Alamat</b><span>Jl. Tawangsari, Kec. Teras, Kab. Boyolali, Jawa Tengah</span></div>
+          <div><b>Alamat</b><span id="alamatText">Jl. Tawangsari, Kec. Teras, Kab. Boyolali, Jawa Tengah</span></div>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4z"/><path d="m4 6 8 6 8-6"/></svg>
-          <div><b>Email</b><span>smp3teras@gmail.com</span></div>
+          <div><b>Email</b><span id="emailText">smp3teras@gmail.com</span></div>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v3c0 1.1-.9 2-2 2C10.6 19 5 13.4 5 6c0-1.1.9-2 2-2Z"/></svg>
-          <div><b>Telepon</b><span>(0276) 328-2649</span></div>
+          <div><b>Telepon</b><span id="teleponText">(0276) 328-2649</span></div>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg>
-          <div><b>Jam Layanan</b><span>Senin–Jumat, 07.00–14.00 WIB</span></div>
+          <div><b>Jam Layanan</b><span id="jamLayananText">Senin–Jumat, 07.00–14.00 WIB</span></div>
         </div>
       </div>
       <!-- 🗺️ GANTI PETA DI SINI: hapus <div class="map-box">...</div> di bawah, ganti dengan embed Google Maps, contoh:
@@ -754,7 +771,7 @@
       <div>
         <!-- 🖼️ Logo di footer ini sama seperti di header — kalau logo sudah diganti di header, ganti juga yang di sini -->
         <div class="brand" style="margin-bottom:12px;">
-          <img src="images/logo.png" style="width:44px;height:44px;border-radius:50%;object-fit:cover;">
+        <img id="logoFooter" src="images/logo.png" style="width:44px;height:44px;border-radius:50%;object-fit:cover;">
           <div class="brand-text">
             <div class="school-name" style="color:#fff;">SMP Negeri 3 Teras</div>
             <div class="school-sub">Boyolali · Jawa Tengah</div>
@@ -762,14 +779,14 @@
         </div>
         <p style="font-size:13.5px; max-width:320px; color:#98A5BA;">Sekolah menengah pertama negeri yang berkomitmen mendidik generasi berkarakter dan berprestasi.</p>
         <div class="footer-social">
-          <a href="https://www.instagram.com/smpn3terasbyl" target="_blank" rel="noopener" aria-label="Instagram">
+          <a id="igLink" href="https://www.instagram.com/smpn3terasbyl" target="_blank" rel="noopener" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
               <circle cx="12" cy="12" r="3.8" />
               <circle cx="17" cy="7" r="1" />
             </svg>
           </a>
-          <a href="https://www.tiktok.com/@smpn3teras" target="_blank" rel="noopener" aria-label="TikTok">
+          <a id="tiktokLink" href="https://www.tiktok.com/@smpn3teras" target="_blank" rel="noopener" aria-label="TikTok">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M16.5 3c.3 2.1 1.6 3.5 3.7 3.7v3.1c-1.3 0-2.6-.4-3.7-1.1v6.6c0 3.3-2.7 5.7-5.8 5.7-3.2 0-5.8-2.5-5.8-5.7s2.7-5.7 5.8-5.7c.4 0 .8 0 1.1.1v3.2c-.3-.1-.7-.2-1.1-.2-1.5 0-2.7 1.2-2.7 2.6s1.2 2.6 2.7 2.6c1.5 0 2.8-1.1 2.8-2.6V3h3z" />
@@ -789,9 +806,9 @@
       <div>
         <h5>Kontak</h5>
         <ul>
-          <li>Jl. Tawangsari, Teras, Boyolali</li>
-          <li>smp3teras@gmail.com</li>
-          <li>(0276) 328-2649</li>
+          <li id="footerAlamat">Jl. Tawangsari, Teras, Boyolali</li>
+          <li id="footerEmail">smp3teras@gmail.com</li>
+          <li id="footerTelepon">(0276) 328-2649</li>
         </ul>
       </div>
     </div>
@@ -936,6 +953,77 @@
         });
       } else {
         beritaGrid.style.display = 'none';
+      }
+      // ---- Fasilitas & Ekskul ----
+      const { data: itemFoto } = await sb.from('item_foto').select('*');
+      if (itemFoto) {
+        itemFoto.forEach((item) => {
+          if (!item.foto_url) return; // biarkan ikon SVG kalau belum ada foto
+          const card = document.querySelector('.fcard[data-slug="' + item.slug + '"]');
+          if (!card) return;
+
+          const icon = card.querySelector('.icon');
+          if (icon) {
+            const img = document.createElement('img');
+            img.src = item.foto_url;
+            img.alt = item.nama;
+            img.loading = 'lazy';
+            img.style.cssText = 'width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;margin-bottom:16px;';
+            icon.replaceWith(img);
+          }
+
+          // Perbarui juga data yang dipakai saat kartu diklik (foto & deskripsi di pop-up)
+          card.setAttribute('onclick',
+            `openFasilitasModal('${item.foto_url}', '${item.nama.replace(/'/g, "\\'")}', '${(item.deskripsi || '').replace(/'/g, "\\'")}')`);
+        });
+      }
+      // ---- Pengaturan Umum ----
+      if (settings) {
+        const s = {};
+        settings.forEach((r) => { s[r.key] = r.value; });
+
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+        const setHref = (id, val) => { const el = document.getElementById(id); if (el && val) el.href = val; };
+        const setSrc = (id, val) => { const el = document.getElementById(id); if (el && val) el.src = val; };
+
+        if (s.identitas_foto) setSrc('identitasFotoImg', s.identitas_foto);
+        set('npsnText', 'NPSN.' + s.npsn);
+        set('akreditasiText', s.akreditasi);
+        set('tahunBerdiriText', s.tahun_berdiri);
+
+        set('statSiswaNum', s.stat_siswa);
+        set('statGuruNum', s.stat_guru);
+        set('statStafNum', s.stat_staf);
+        set('statAkreditasiNum', s.akreditasi);
+
+        set('visiText', s.visi);
+        if (s.misi) {
+          const ul = document.getElementById('misiList');
+          ul.innerHTML = '';
+          s.misi.split('\n').filter(x => x.trim()).forEach((baris, i) => {
+            const li = document.createElement('li');
+            const no = String(i + 1).padStart(2, '0');
+            li.innerHTML = `<span>${no}</span> ${baris.trim()}`;
+            ul.appendChild(li);
+          });
+        }
+
+        set('alamatText', s.alamat);
+        set('emailText', s.email_sekolah);
+        set('teleponText', s.telepon);
+        set('jamLayananText', s.jam_layanan);
+        set('footerAlamat', s.alamat);
+        set('footerEmail', s.email_sekolah);
+        set('footerTelepon', s.telepon);
+
+        setHref('spmbLink', s.link_spmb);
+        setHref('igLink', s.link_instagram);
+        setHref('tiktokLink', s.link_tiktok);
+
+        if (s.logo_url) {
+          setSrc('logoHeader', s.logo_url);
+          setSrc('logoFooter', s.logo_url);
+        }
       }
 
       // ---- Galeri ----

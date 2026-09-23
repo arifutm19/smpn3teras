@@ -147,6 +147,15 @@
             display: none;
             margin-bottom: 6px;
         }
+        .hint {
+        background: #FFF8E8;
+        border-left: 3px solid #C99A2E;
+        padding: 8px 12px;
+        font-size: 13px;
+        color: #56606F;
+        margin-bottom: 16px;
+        border-radius: 4px;
+        }
     </style>
 </head>
 
@@ -160,6 +169,7 @@
         <main>
             <section>
                 <h2>Kepala Sekolah</h2>
+                <p class="hint">📍 Muncul di: bagian "Sambutan Kepala Sekolah" pada halaman utama, di bawah section Beranda.</p>
                 <img id="kepsekFotoPreview" class="foto-kepsek" alt="Foto kepala sekolah">
                 <label>Ganti foto (kosongkan jika tidak ingin mengganti)</label>
                 <input type="file" id="kepsekFoto" accept="image/*">
@@ -173,6 +183,7 @@
 
             <section>
                 <h2>Galeri Foto</h2>
+                <p class="hint">📍 Muncul di: bagian "Galeri Kegiatan". Foto terbaru tampil paling atas.).</p>
                 <label>Judul / keterangan foto</label>
                 <input type="text" id="galeriJudul">
                 <label>Pilih foto</label>
@@ -207,8 +218,72 @@
                 <input type="file" id="beritaFile" accept="image/*">
                 <button class="btn" id="btnSimpanBerita">Tambah Pengumuman</button>
                 <p class="info" id="infoBerita"></p>
-                <div id="beritaList" style="margin-top:20px;"></div>
-            </section>
+        <div id="beritaList" style="margin-top:20px;"></div>
+        </section>
+        
+        <section>
+            <h2>Foto Fasilitas</h2>
+            <p class="info">Klik "Ganti Foto" pada tiap item untuk upload foto baru. Teks deskripsi bisa langsung diedit lalu
+                klik Simpan.</p>
+            <div id="fasilitasList"></div>
+        </section>
+        
+        <section>
+            <h2>Foto Ekstrakurikuler</h2>
+        <div id="ekskulList"></div>
+        </section>
+        
+        <section>
+            <h2>Identitas Sekolah</h2>
+            <label>Foto kartu identitas (beranda)</label>
+            <input type="file" id="identitasFoto" accept="image/*">
+            <label>NPSN</label>
+            <input type="text" id="npsn">
+            <label>Akreditasi</label>
+            <input type="text" id="akreditasi">
+            <label>Tahun Berdiri</label>
+            <input type="text" id="tahunBerdiri">
+            <label>Jumlah Siswa Aktif</label>
+            <input type="text" id="statSiswa">
+            <label>Jumlah Tenaga Pendidik</label>
+            <input type="text" id="statGuru">
+            <label>Jumlah Staf</label>
+            <input type="text" id="statStaf">
+            <button class="btn" id="btnSimpanIdentitas">Simpan Identitas</button>
+            <p class="info" id="infoIdentitas"></p>
+        </section>
+        
+        <section>
+            <h2>Visi &amp; Misi</h2>
+            <label>Visi</label>
+            <textarea id="visi"></textarea>
+            <label>Misi (satu poin per baris)</label>
+            <textarea id="misi" placeholder="Poin 1&#10;Poin 2&#10;Poin 3"></textarea>
+            <button class="btn" id="btnSimpanVisiMisi">Simpan Visi &amp; Misi</button>
+            <p class="info" id="infoVisiMisi"></p>
+        </section>
+        
+        <section>
+            <h2>Kontak &amp; Lainnya</h2>
+            <label>Alamat</label>
+            <input type="text" id="alamat">
+            <label>Email</label>
+            <input type="text" id="emailSekolah">
+            <label>Telepon</label>
+            <input type="text" id="telepon">
+            <label>Jam Layanan</label>
+            <input type="text" id="jamLayanan">
+            <label>Link SPMB</label>
+            <input type="text" id="linkSpmb">
+            <label>Link Instagram</label>
+            <input type="text" id="linkInstagram">
+            <label>Link TikTok</label>
+            <input type="text" id="linkTiktok">
+            <label>Ganti Logo Sekolah</label>
+            <input type="file" id="logoFile" accept="image/*">
+            <button class="btn" id="btnSimpanKontak">Simpan</button>
+            <p class="info" id="infoKontak"></p>
+        </section>
         </main>
     </div>
 
@@ -456,6 +531,169 @@
             }
             btn.disabled = false;
         };
+        // ---------- FASILITAS & EKSKUL ----------
+        async function loadItemFoto() {
+            const { data, error } = await sb.from('item_foto').select('*').order('nama');
+            if (error) { alert('Gagal memuat: ' + error.message); return; }
+
+            renderItemFotoList('fasilitasList', data.filter(x => x.kategori === 'fasilitas'));
+            renderItemFotoList('ekskulList', data.filter(x => x.kategori === 'ekskul'));
+        }
+
+        function renderItemFotoList(containerId, items) {
+            const container = $(containerId);
+            container.innerHTML = '';
+
+            items.forEach((item) => {
+                const box = document.createElement('div');
+                box.style.cssText = 'border:1px solid #ddd;border-radius:8px;padding:14px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;';
+
+                const imgHtml = item.foto_url
+                    ? `<img src="${item.foto_url}" style="width:90px;height:70px;object-fit:cover;border-radius:6px;">`
+                    : `<div style="width:90px;height:70px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#999;text-align:center;">Belum ada foto</div>`;
+
+                box.innerHTML = `
+          <div>${imgHtml}</div>
+          <div style="flex:1; min-width:220px;">
+            <strong>${item.nama}</strong>
+            <input type="file" accept="image/*" style="margin-top:6px;">
+            <textarea style="min-height:60px; margin-top:6px;">${item.deskripsi || ''}</textarea>
+            <button class="btn" style="margin-top:6px; padding:7px 14px; font-size:13px;">Simpan</button>
+            <span class="info" style="display:block;"></span>
+          </div>
+        `;
+
+                const fileInput = box.querySelector('input[type=file]');
+                const textarea = box.querySelector('textarea');
+                const btn = box.querySelector('button');
+                const info = box.querySelector('.info');
+
+                btn.onclick = async () => {
+                    const file = fileInput.files[0];
+                    if (file && file.size > MAX_SIZE) { info.textContent = 'Foto maksimal 5 MB.'; return; }
+
+                    btn.disabled = true;
+                    info.textContent = 'Menyimpan...';
+                    try {
+                        const update = { deskripsi: textarea.value.trim() };
+                        if (file) update.foto_url = await uploadFile(file, item.kategori);
+
+                        const { error } = await sb.from('item_foto').update(update).eq('id', item.id);
+                        if (error) throw error;
+
+                        info.textContent = 'Tersimpan.';
+                        loadItemFoto();
+                    } catch (e) {
+                        info.textContent = 'Gagal: ' + e.message;
+                        btn.disabled = false;
+                    }
+                };
+
+                container.appendChild(box);
+            });
+        }
+        // ---------- PENGATURAN UMUM ----------
+        let allSettings = {};
+
+        async function loadPengaturanUmum() {
+            const { data } = await sb.from('site_settings').select('*');
+            allSettings = {};
+            (data || []).forEach((r) => { allSettings[r.key] = r.value; });
+
+            $('npsn').value = allSettings.npsn || '';
+            $('akreditasi').value = allSettings.akreditasi || '';
+            $('tahunBerdiri').value = allSettings.tahun_berdiri || '';
+            $('statSiswa').value = allSettings.stat_siswa || '';
+            $('statGuru').value = allSettings.stat_guru || '';
+            $('statStaf').value = allSettings.stat_staf || '';
+
+            $('visi').value = allSettings.visi || '';
+            $('misi').value = allSettings.misi || '';
+
+            $('alamat').value = allSettings.alamat || '';
+            $('emailSekolah').value = allSettings.email_sekolah || '';
+            $('telepon').value = allSettings.telepon || '';
+            $('jamLayanan').value = allSettings.jam_layanan || '';
+            $('linkSpmb').value = allSettings.link_spmb || '';
+            $('linkInstagram').value = allSettings.link_instagram || '';
+            $('linkTiktok').value = allSettings.link_tiktok || '';
+        }
+
+        $('btnSimpanIdentitas').onclick = async () => {
+            const info = $('infoIdentitas');
+            const btn = $('btnSimpanIdentitas');
+            const file = $('identitasFoto').files[0];
+            if (file && file.size > MAX_SIZE) { info.textContent = 'Foto maksimal 5 MB.'; return; }
+
+            btn.disabled = true;
+            info.textContent = 'Menyimpan...';
+            try {
+                const rows = [
+                    { key: 'npsn', value: $('npsn').value.trim() },
+                    { key: 'akreditasi', value: $('akreditasi').value.trim() },
+                    { key: 'tahun_berdiri', value: $('tahunBerdiri').value.trim() },
+                    { key: 'stat_siswa', value: $('statSiswa').value.trim() },
+                    { key: 'stat_guru', value: $('statGuru').value.trim() },
+                    { key: 'stat_staf', value: $('statStaf').value.trim() }
+                ];
+                if (file) {
+                    const url = await uploadFile(file, 'identitas');
+                    rows.push({ key: 'identitas_foto', value: url });
+                }
+                const { error } = await sb.from('site_settings').upsert(rows);
+                if (error) throw error;
+                info.textContent = 'Tersimpan.';
+                $('identitasFoto').value = '';
+            } catch (e) {
+                info.textContent = 'Gagal: ' + e.message;
+            }
+            btn.disabled = false;
+        };
+
+        $('btnSimpanVisiMisi').onclick = async () => {
+            const info = $('infoVisiMisi');
+            const btn = $('btnSimpanVisiMisi');
+            btn.disabled = true;
+            info.textContent = 'Menyimpan...';
+            const { error } = await sb.from('site_settings').upsert([
+                { key: 'visi', value: $('visi').value.trim() },
+                { key: 'misi', value: $('misi').value.trim() }
+            ]);
+            info.textContent = error ? 'Gagal: ' + error.message : 'Tersimpan.';
+            btn.disabled = false;
+        };
+
+        $('btnSimpanKontak').onclick = async () => {
+            const info = $('infoKontak');
+            const btn = $('btnSimpanKontak');
+            const file = $('logoFile').files[0];
+            if (file && file.size > MAX_SIZE) { info.textContent = 'Foto maksimal 5 MB.'; return; }
+
+            btn.disabled = true;
+            info.textContent = 'Menyimpan...';
+            try {
+                const rows = [
+                    { key: 'alamat', value: $('alamat').value.trim() },
+                    { key: 'email_sekolah', value: $('emailSekolah').value.trim() },
+                    { key: 'telepon', value: $('telepon').value.trim() },
+                    { key: 'jam_layanan', value: $('jamLayanan').value.trim() },
+                    { key: 'link_spmb', value: $('linkSpmb').value.trim() },
+                    { key: 'link_instagram', value: $('linkInstagram').value.trim() },
+                    { key: 'link_tiktok', value: $('linkTiktok').value.trim() }
+                ];
+                if (file) {
+                    const url = await uploadFile(file, 'logo');
+                    rows.push({ key: 'logo_url', value: url });
+                }
+                const { error } = await sb.from('site_settings').upsert(rows);
+                if (error) throw error;
+                info.textContent = 'Tersimpan.';
+                $('logoFile').value = '';
+            } catch (e) {
+                info.textContent = 'Gagal: ' + e.message;
+            }
+            btn.disabled = false;
+        };
 
         // ---------- LOGOUT ----------
         $('btnLogout').onclick = async () => {
@@ -482,6 +720,8 @@
             loadGaleri();
             loadPrestasi();
             loadBerita();
+            loadItemFoto();
+            loadPengaturanUmum();
         }
         init();
     </script>
